@@ -1,25 +1,24 @@
 module Compare
 
 function main()
-    count2 = 0
-    count3 = 0
     ids = []
     open("../input/input.txt") do file
         for line in eachline(file)
-            id = reshape(map(x -> x[1], split(line, "")), (1, :))
-            # for other in ids
-            # end
-            if length(ids) > 5
-                println(size(id))
-                ids_all = vcat(ids...)
-                println(size(ids_all))
-                println(ids_all)
-                println(ids_all .== id)
-                println(sum(ids_all .== id, dims=2))
-                break
+            id = map(x -> x[1], split(line, ""))
+            match_count = length(id) - 1
+            for other in ids
+                common = other .== id
+                if sum(common) == match_count
+                    # Print what's in common.
+                    println(join(id[common]))
+                    # No labeled break in Julia yet.
+                    # See also: https://github.com/JuliaLang/julia/issues/5334
+                    @goto done
+                end
             end
             push!(ids, id)
         end
+        @label done
     end
 end
 
