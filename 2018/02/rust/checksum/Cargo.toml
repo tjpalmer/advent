@@ -1,0 +1,7 @@
+[package]
+name = "checksum"
+version = "0.1.0"
+authors = ["Tom <tjpalmer@tjpalmer.com>"]
+edition = "2018"
+
+[dependencies]
