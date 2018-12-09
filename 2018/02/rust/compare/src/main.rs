@@ -5,7 +5,6 @@ fn main() -> Try<()> {
     let file = File::open("../../input/input.txt")?;
     let mut ids: Vec<String> = Vec::new();
     'lines: for line in BufReader::new(file).lines() {
-        // Count chars.
         let id = line?;
         'others: for other in ids.iter() {
             let mut diff_index = -1;
