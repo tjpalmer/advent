@@ -3,12 +3,12 @@ use std::fs::File;
 
 fn main() -> Try<()> {
     let file = File::open("../../input/input.txt")?;
-    let mut ids: Vec<String> = Vec::new();
+    let mut ids: Vec<Vec<char>> = Vec::new();
     'lines: for line in BufReader::new(file).lines() {
-        let id = line?;
+        let id: Vec<char> = line?.chars().collect();
         'others: for other in ids.iter() {
             let mut diff_index = -1;
-            for ((index, c0), c1) in id.char_indices().zip(other.chars()) {
+            for (index, (c0, c1)) in id.iter().zip(other.iter()).enumerate() {
                 if c0 != c1 {
                     if diff_index >= 0 {
                         // More than one different.
@@ -20,9 +20,9 @@ fn main() -> Try<()> {
             }
             if diff_index >= 0 {
                 // If we get here, it's because we had only one different.
-                let (a, b) = id.split_at(diff_index as usize);
-                let (_, c) = b.split_at(1);
-                println!("{}{}", a, c);
+                let a: String = id[..diff_index as usize].iter().collect();
+                let b: String = id[diff_index as usize + 1..].iter().collect();
+                println!("{}{}", a, b);
                 break 'lines;
             }
         }
