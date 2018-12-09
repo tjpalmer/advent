@@ -8,7 +8,7 @@ fn main() -> Try<()> {
         let id = line?;
         'others: for other in ids.iter() {
             let mut diff_index = -1;
-            for (index, (c0, c1)) in id.chars().zip(other.chars()).enumerate() {
+            for ((index, c0), c1) in id.char_indices().zip(other.chars()) {
                 if c0 != c1 {
                     if diff_index >= 0 {
                         // More than one different.
@@ -21,7 +21,7 @@ fn main() -> Try<()> {
             if diff_index >= 0 {
                 // If we get here, it's because we had only one different.
                 let (a, b) = id.split_at(diff_index as usize);
-                let c: String = b.chars().skip(1).collect();
+                let (_, c) = b.split_at(1);
                 println!("{}{}", a, c);
                 break 'lines;
             }
