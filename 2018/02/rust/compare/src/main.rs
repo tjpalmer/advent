@@ -13,9 +13,8 @@ fn main() -> Try<()> {
                     if diff_index >= 0 {
                         // More than one different.
                         continue 'others;
-                    } else {
-                        diff_index = index as i32;
                     }
+                    diff_index = index as i32;
                 }
             }
             if diff_index >= 0 {
