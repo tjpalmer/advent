@@ -5,12 +5,11 @@ function main()
     open("../input/input.txt") do file
         for line in eachline(file)
             id = map(x -> x[1], split(line, ""))
-            match_count = length(id) - 1
             for other in ids
-                common = other .== id
-                if sum(common) == match_count
+                diff = other .!= id
+                if sum(diff) == 1
                     # Print what's in common.
-                    println(join(id[common]))
+                    println(join(id[.!diff]))
                     # No labeled break in Julia yet.
                     # See also: https://github.com/JuliaLang/julia/issues/5334
                     @goto done
