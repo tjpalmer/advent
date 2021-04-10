@@ -14,7 +14,6 @@ class Day1 {
             .range(0, numbers.length)
             .filter(i -> {
                 var a = numbers[i];
-                // Arrays.stream(numbers).skip(i + 1);
                 var optionalB = IntStream
                     .range(i + 1, numbers.length)
                     .filter(j -> a + numbers[j] == 2020)
