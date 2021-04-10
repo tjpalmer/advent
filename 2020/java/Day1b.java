@@ -22,7 +22,7 @@ class Day1b {
                     .findAny()
                     .orElse(null);
             })
-            .filter(ab2 -> ab2 != null)
+            .filter(maybeFound -> maybeFound != null)
             .findAny()
             .orElseThrow();
         var product = Arrays.stream(founds).reduce(1, (a, b) -> a * b);
