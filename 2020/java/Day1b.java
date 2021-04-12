@@ -25,6 +25,8 @@ class Day1b {
                             .range(j + 1, numbers.length)
                             .map(k -> numbers[k])
                             .filter(c -> a + b + c == 2020)
+                            .findAny()
+                            .stream()
                             .mapToObj(c -> new int[]{a, b, c})
                             .findAny()
                             .orElse(null);
